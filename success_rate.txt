@@ -1,2 +1,0 @@
-0.08 fail rate for dates for sample of 50
-0.1 fail rate for places for sample of 50
