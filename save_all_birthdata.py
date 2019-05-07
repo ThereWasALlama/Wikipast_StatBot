@@ -18,13 +18,13 @@ bplace_error = 'NotFound'
 bdate_error  = 'NotFound'
 
 
-def save_all_birthdata():
-    '''Use get_all_names to get the target pages, then just save all their birthdata information'''
+# TODO make sure this function actually updates the file instead of creating a new one completly
+def save_all_birthdata(names):
+    '''Use get_all_names to get the target pages, then just save all their birthdata information, names must be a lit of pagenames to target'''
     
-    # TODO figure out what's wrong with the bet_birthdate function, seems to be returning none on easy to identify peeps
     baseurl = login()
     
-    names = get_all_names(baseurl)
+#    names = get_all_names(baseurl)
     
     bdate  = []
     bplace = []
@@ -84,4 +84,5 @@ def save_all_birthdata():
         savefile.write(xml.tostring(root))
         
 if __name__ == '__main__':
-    save_all_birthdata()
+    names = get_all_names(baseurl)
+    save_all_birthdata(names)
