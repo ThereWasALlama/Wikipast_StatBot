@@ -6,10 +6,13 @@ Created on Tue May  7 14:46:44 2019
 @author: LlamaGod
 """
 
-def view_database():
+import xml.etree.ElementTree as ET
+import xml.dom.minidom 
+
+def view_database(databasename):
     ''' View the database xml in pretty print'''
     
-    databasename = 'database.xml'
+#    databasename = 'database.xml'
     
     tree = ET.ElementTree(file=databasename)
     root = tree.getroot()
@@ -18,4 +21,5 @@ def view_database():
     print(dom.toprettyxml())
     
 if __name__ == '__main__':
-    view_database()
+    databasename = 'database.xml'
+    view_database(databasename)

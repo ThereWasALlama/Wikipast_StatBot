@@ -10,17 +10,19 @@ from get_latlong import get_latlong
 import xml.etree.ElementTree as xml
 
 
-# The name of the database being used
-# TODO put the savename in some configuration file somewhere
-savename = 'database.xml'
-
-bplace_error = 'NotFound'
-bdate_error  = 'NotFound'
 
 
 # TODO make sure this function actually updates the file instead of creating a new one completly
-def save_all_birthdata(names):
+def save_all_birthdata(names, databasename):
     '''Use get_all_names to get the target pages, then just save all their birthdata information, names must be a lit of pagenames to target'''
+    
+    # The name of the database being used
+    # TODO put the savename in some configuration file somewhere
+#    databasename = 'database.xml'
+    
+    bplace_error = 'NotFound'
+    bdate_error  = 'NotFound'
+
     
     baseurl = login()
     
@@ -80,9 +82,12 @@ def save_all_birthdata(names):
         
     
     # Save the final file
-    with open(savename, 'wb') as savefile:
+    with open(databasename, 'wb') as savefile:
         savefile.write(xml.tostring(root))
         
 if __name__ == '__main__':
+    
     names = get_all_names(baseurl)
-    save_all_birthdata(names)
+    databasename = 'database.xml'
+    
+    save_all_birthdata(names, databasename)

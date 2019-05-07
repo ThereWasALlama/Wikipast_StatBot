@@ -1,6 +1,5 @@
 # This script creates a histogram of the birthyear distribution in the database
 # from year 0 to the current year as per the datetime library
-# TODO Prettification
 import numpy as np
 import matplotlib.pyplot as plt
 from load_birthdays import load_birthdays
@@ -17,7 +16,7 @@ def birth_histogram():
     byear = [int(x.split('.')[0]) for x in data_filtered]
     
     create_histogram(byear, 0, 'birthyear_histogram.png')
-    create_histogram(byear, 1700, 'birthyear_histogram_recent.png')
+    create_histogram(byear, 1500, 'birthyear_histogram_recent.png')
     
 #    # Histogram is formed only of positive years
 #    # Anybody before Jesus does not exist

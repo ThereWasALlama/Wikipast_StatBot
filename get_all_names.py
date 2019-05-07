@@ -4,6 +4,8 @@ from bs4 import BeautifulSoup
 import json
 from urllib.request import urlopen
 
+import re
+
 from login import *
 
 #def get_all_names(baseurl):
@@ -23,7 +25,7 @@ from login import *
 #
 #    return names
 
-# TODO fix coding isue in some of the names
+# TODO fix encoding isue in some of the names
 def get_all_names(baseurl):
     '''Get all the names based on the Q5 wikidata label, curtesy of the Wikidataficator'''
     
@@ -42,13 +44,15 @@ def get_all_names(baseurl):
         numberOfItemsToTreat = len(source['query']['search'])
     
         for i in range(numberOfItemsToTreat):
-            if str(source['query']['search'][i]['snippet']).find('Wikidata') != -1:
+#            if str(source['query']['search'][i]['snippet']).find('wikidata') != -1:
+            if re.search('wikidata', str(source['query']['search'][i]['snippet']), re.IGNORECASE):
                 title = str(source['query']['search'][i]['title'])
                 #print(str(source['query']['search'][i]['title'])+"\n\n")
                 joblist.append(title.replace(" ","_"))
         wikidate_offset += wikidata_limit
         
     return joblist
+#        return source
 
 
 if __name__ == '__main__':
