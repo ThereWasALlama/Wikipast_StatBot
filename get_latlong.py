@@ -1,4 +1,5 @@
 from geopy.geocoders import Nominatim
+import time
 
 
 def get_latlong(city):
@@ -6,9 +7,12 @@ def get_latlong(city):
     may throw an exception if the city is not found after 30s'''
 
     # Create the geolocator
-    geolocator = Nominatim(timeout=30, user_agent='wikipast_statbot')
-
+    time.sleep(1) # Need this to restrict the request rate to 1/s
+    geolocator = Nominatim(timeout=30, user_agent='StatBot2')
+    
     location = geolocator.geocode(city)
+
+    
     if location == None:
         raise Exception('({}) location was not found'.format(city))
     

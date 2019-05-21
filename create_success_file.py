@@ -16,16 +16,16 @@ def create_success_file():
     
     # Load the data
     birthdays = load_birthdays()
-    places = load_birthplaces()
+    places    = load_birthplaces()
     
     # Count the number of NotFound in each as well as total
     Nerr_birthdays = sum(x=='NotFound' for x in birthdays.values())
     Nerr_places    = sum('NotFound' in x for x in places.values())
     
     err_rate_birthdays = Nerr_birthdays/len(birthdays)
-    err_rate_places = Nerr_places/len(places)
+    err_rate_places    = Nerr_places/len(places)
     
-    bdaystr = '{} fail rate for dates for sample of {}'.format(err_rate_birthdays, len(birthdays))
+    bdaystr  = '{} fail rate for dates for sample of {}'.format(err_rate_birthdays, len(birthdays))
     placestr = '{} fail rate for places for sample of {}'.format(err_rate_places, len(places))
     print(bdaystr)
     print(placestr)
@@ -33,6 +33,7 @@ def create_success_file():
     with open(savename, 'w') as file:
         print(bdaystr, file=file)
         print(placestr, file=file)
+        
         
 if __name__=='__main__':
     create_success_file()

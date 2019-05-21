@@ -34,7 +34,7 @@ def save_all_birthdata(names, databasename):
         try:
             bday = get_birthdate(baseurl, name)
             if bday == None:
-                print('{} birthdate returned none'.format(name))
+#                print('{} birthdate returned none'.format(name))
                 bdat.append(bdate_error)
                 continue
             
@@ -47,7 +47,7 @@ def save_all_birthdata(names, databasename):
         try:
             bloc = get_birthplace(baseurl, name)
             if bloc == None:
-                print('{} birthplace returned none'.format(name))
+#                print('{} birthplace returned none'.format(name))
                 bplace.append(bplace_error)
                 continue
     
@@ -55,17 +55,22 @@ def save_all_birthdata(names, databasename):
     
         except:
             bplace.append(bplace_error)
-            print('{} birthplace caused exception'.format(name))
+            print('{} birthplace not found'.format(name))
     
     
     
     # Prepare the xml to be saved
     # Base elements of the xml to be prepared
     # TODO make this update the existing database instead of writing over it
-    root   = xml.Element('data')
-    people = xml.SubElement(root, 'people')
+    
     
     print('Saving data for {} people'.format(len(names)))
+    
+#    try:
+#    tree = xml.ElementTree()
+    
+    root   = xml.Element('data')
+    people = xml.SubElement(root, 'people')
     
     for name, date, place in zip(names, bdate, bplace):
         pagename  = xml.SubElement(people, 'person', pagename=name)
@@ -77,7 +82,7 @@ def save_all_birthdata(names, databasename):
         except:
             latlong = bplace_error
             
-        birthplace = xml.SubElement(pagename, 'birthplace', latlong=str(latlong))
+        birthplace      = xml.SubElement(pagename, 'birthplace', latlong=str(latlong))
         birthplace.text = place
         
     

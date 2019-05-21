@@ -31,4 +31,4 @@ def get_all_places(baseurl,name):
 
 if __name__ == '__main__':
     baseurl = login()
-    print(get_all_places(baseurl,'Juan Manuel Fangio'))
+    print(get_all_places(baseurl,'Poul Anderson'))

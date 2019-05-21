@@ -15,6 +15,7 @@ from add_all_figures import add_all_figures
 from login_edit import login_edit
 from create_success_file import create_success_file
 from get_all_names import get_all_names
+from travel_distance_histogram import travel_distance_histogram
 
 # Name of the active database
 databasename = 'database.xml'
@@ -24,7 +25,13 @@ login_obj = login_edit()
 
 # Gather the data
 print('Finding all named entities...')
-names = get_all_names(login_obj.baseurl)
+names = get_all_names(login_obj.baseurl, count_limit=2000)
+#names = get_all_names(login_obj.baseurl)
+
+print('Saving the name list...')
+with open('names.txt', 'w') as f:
+    for item in names:
+        f.write("%s\n" % item)
 
 print('Getting all birth data...')
 save_all_birthdata(names, databasename)
@@ -35,6 +42,9 @@ save_all_places(names, databasename)
 # Generate the birthdate histogram
 print('Generating birth histogram...')
 birth_histogram()
+
+print('Generating travel distance distribution...')
+travel_distance_histogram()
 
 # Generate the maps
 # TODO generate a table of the most popular birth cities

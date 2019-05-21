@@ -25,4 +25,4 @@ def get_birthplace(baseurl,name):
 
 if __name__ == '__main__':
     baseurl = login()
-    print(get_birthplace(baseurl,'Mario Botta'))
+    print(get_birthplace(baseurl,'Yuri Gagarin'))
